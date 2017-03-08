@@ -4,6 +4,7 @@
  * and open the template in the editor.
  */
 package demineurconsole;
+import Model.*;
 
 /**
  *
@@ -15,7 +16,7 @@ public class DemineurConsole {
      * @param args the command line arguments
      */
     public static void main(String[] args) {
-        // TODO code application logic here
+        Map map = new Map(5, 5, 5);
     }
     
 }
