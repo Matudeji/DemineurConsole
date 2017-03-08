@@ -16,7 +16,9 @@ public class DemineurConsole {
      * @param args the command line arguments
      */
     public static void main(String[] args) {
-        Map map = new Map(5, 5, 5);
+        Game game = new Game();
+        game.createMap(5, 5, 2);
+        game.printMap();
     }
     
 }

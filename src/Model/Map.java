@@ -5,31 +5,45 @@
  */
 package Model;
 
+import java.util.Observable;
+
 /**
  *
  * @author arthur
  */
-public class Map {
+public class Map extends Observable {
     private int width;
     private int height;
     private int mineProportion;
     private static int mineProportionMax = 85;
-    //ArrayList< map
-    private Cell[][] tab;
+    private Cell[][] map;
 
-    public Map(int width, int height, int mineProportion) {
+    public Map(int width, int height, int mineProportion) throws RuntimeException {
+        if(width <= 0 || height <= 0) {
+            throw new RuntimeException("Les dimensions doivent être positives");
+        }
         this.width = width;
         this.height = height;
         this.mineProportion = mineProportion;
-        tab = new Cell[width][height];
+        map = new Cell[width][height];
+        initMap();
     }
     
     
     public void initMap() {
         for(int i=0; i<height; i++) {
             for(int j=0; j<width; j++) {
-                map[i][j] = new SafeCell()
+                map[i][j] = new Cell(new Point(i, j), true, '#', false);
             }
+        }
+    }
+    
+    public void print() {
+        for(int i=0; i<height; i++) {
+            for(int j=0; j<width; j++) {
+                System.out.print(map[i][j].getType());
+            }
+            System.out.println(i);
         }
     }
     
