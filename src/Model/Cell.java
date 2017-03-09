@@ -41,7 +41,7 @@ public class Cell {
     /**
      * @return the hidden
      */
-    public boolean isHidden() {
+    public boolean getHidden() {
         return hidden;
     }
 

@@ -5,6 +5,8 @@
  */
 package demineurconsole;
 import Model.*;
+import Controller.*;
+import java.util.Scanner;
 
 /**
  *
@@ -16,9 +18,21 @@ public class DemineurConsole {
      * @param args the command line arguments
      */
     public static void main(String[] args) {
+        
         Game game = new Game();
-        game.createMap(5, 5, 2);
+        Controller controller = new Controller();
+        Scanner scan = new Scanner(System.in);
+
+        game.createMap(5, 3, 5);
         game.printMap();
+        
+        String s = scan.nextLine();
+        Point firstClic = controller.parseString(s);
+        
+        game.initMines(firstClic);
+        game.revail(firstClic);
+        game.printMap();
+        
     }
     
 }

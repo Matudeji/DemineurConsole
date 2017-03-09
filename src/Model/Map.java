@@ -26,14 +26,14 @@ public class Map extends Observable {
         this.height = height;
         this.mineProportion = mineProportion;
         map = new Cell[width][height];
-        initMap();
+        initEmptyMap();
     }
     
     
-    public void initMap() {
+    public void initEmptyMap() {
         for(int i=0; i<height; i++) {
             for(int j=0; j<width; j++) {
-                map[i][j] = new Cell(new Point(i, j), true, '#', false);
+                map[j][i] = new Cell(new Point(i, j), true, '#', false);
             }
         }
     }
@@ -41,10 +41,28 @@ public class Map extends Observable {
     public void print() {
         for(int i=0; i<height; i++) {
             for(int j=0; j<width; j++) {
-                System.out.print(map[i][j].getType());
+                System.out.print(map[j][i].getType());
             }
-            System.out.println(i);
+            System.out.println("");
         }
+    }
+    
+    public void initMines(Point firstClic) {
+        int mineToAdd = mineProportion;
+        while (mineToAdd != 0) {
+            int x = (int) (Math.random() * width );
+            int y = (int) (Math.random() * height );
+            
+            if(!map[x][y].getMine() && x != firstClic.getX() && y != firstClic.getY()) {
+                map[x][y].setMine(true);   
+                map[x][y].setType('x'); 
+                mineToAdd--;
+            }
+        }
+    }
+    
+    public Cell getCell(Point p) {
+        return map[p.getX()][p.getY()];
     }
     
     
@@ -104,8 +122,5 @@ public class Map extends Observable {
     public static void setMineProportionMax(int aMineProportionMax) {
         mineProportionMax = aMineProportionMax;
     }
-    
-    
-    
     
 }

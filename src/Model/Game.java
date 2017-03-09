@@ -27,6 +27,19 @@ public class Game implements Observer {
     public void printMap() {
         map.print();
     }
+    
+    
+    public void initMines(Point firstClic) {
+        map.initMines(firstClic);
+    }
+    
+    public void revail(Point clic) {
+        
+        if(!map.getCell(clic).getMine() && map.getCell(clic).getHidden()) {
+            map.getCell(clic).setHidden(false);
+            map.getCell(clic).setType('.');
+        }
+    }
 
     @Override
     public void update(Observable o, Object o1) {
