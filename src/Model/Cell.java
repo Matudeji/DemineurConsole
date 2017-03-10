@@ -14,6 +14,7 @@ public class Cell {
     private boolean hidden;
     private char type;
     private boolean mine;
+    private int numberOfMine;
 
     public Cell(Point position, boolean hidden, char type, boolean mine) {
         this.position = position;
@@ -78,6 +79,20 @@ public class Cell {
      */
     public void setMine(boolean mine) {
         this.mine = mine;
+    }
+
+    /**
+     * @return the numberOfMine
+     */
+    public int getNumberOfMine() {
+        return numberOfMine;
+    }
+
+    /**
+     * @param numberOfMine the numberOfMine to set
+     */
+    public void setNumberOfMine(int numberOfMine) {
+        this.numberOfMine = numberOfMine;
     }
     
     

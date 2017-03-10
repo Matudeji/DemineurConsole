@@ -33,12 +33,18 @@ public class Game implements Observer {
         map.initMines(firstClic);
     }
     
+    private void revailRecursive(int x, int y) {
+        
+    }
+    
     public void revail(Point clic) {
         
         if(!map.getCell(clic).getMine() && map.getCell(clic).getHidden()) {
             map.getCell(clic).setHidden(false);
             map.getCell(clic).setType('.');
         }
+        // On dévoile les cellules voisines vide
+        
     }
 
     @Override

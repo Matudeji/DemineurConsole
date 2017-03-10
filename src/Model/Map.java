@@ -59,10 +59,48 @@ public class Map extends Observable {
                 mineToAdd--;
             }
         }
+        initNumberOfMines();
+    }
+    
+    private void initNumberOfMines() {
+        for(int i=0; i<height; i++) {
+            for(int j=0; j<width; j++) {
+                int numberOfMine=0;
+                //gauche
+                if(j != 0) {
+                    if(map[j-1][i].getMine()) {
+                        numberOfMine++;
+                    }
+                }
+                //haut
+                if(i != 0) {
+                    if(map[j][i-1].getMine()) {
+                        numberOfMine++;
+                    }
+                }
+                //droit
+                if(j != width-1) {
+                    if(map[j+1][i].getMine()) {
+                        numberOfMine++;
+                    }
+                }
+                //bas
+                if(i != height-1) {
+                    if(map[j][i+1].getMine()) {
+                        numberOfMine++;
+                    }
+                }
+                map[j][i].setNumberOfMine(numberOfMine);
+            }
+        }
     }
     
     public Cell getCell(Point p) {
         return map[p.getX()][p.getY()];
+    }
+    
+    public Cell getCell(int x, int y) {
+        return map[x][y];
     }
     
     
