@@ -16,7 +16,7 @@ public class Map extends Observable {
     private int height;
     private int mineProportion;
     private static int mineProportionMax = 85;
-    private Cell[][] map;
+    public Cell[][] map;
 
     public Map(int width, int height, int mineProportion, Game o) throws RuntimeException {
         if(width <= 0 || height <= 0) {

@@ -30,11 +30,11 @@ public class DemineurConsole {
         Point firstClic = controller.parseString(s);
         
         game.initMines(firstClic);
-        game.revail(firstClic);
+        game.revail(firstClic.getX(), firstClic.getY());
         game.printMap();
         String c = scan.nextLine();
         Point clic = controller.parseString(c);
-        game.revail(clic);
+        game.revail(clic.getX(),clic.getY());
     }
     
 }
