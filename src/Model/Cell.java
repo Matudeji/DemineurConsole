@@ -5,22 +5,25 @@
  */
 package Model;
 
+import java.util.Observable;
+import java.util.Observer;
 /**
  *
  * @author arthur
  */
-public class Cell {
+public class Cell extends Observable {
     private Point position;
     private boolean hidden;
     private char type;
     private boolean mine;
     private int numberOfMine;
 
-    public Cell(Point position, boolean hidden, char type, boolean mine) {
+    public Cell(Point position, boolean hidden, char type, boolean mine,Game o) {
         this.position = position;
         this.hidden = hidden;
         this.type = type;
         this.mine = mine;
+        this.addObserver(o);
     }
     
     
@@ -65,6 +68,8 @@ public class Cell {
      */
     public void setType(char type) {
         this.type = type;
+        setChanged();
+	notifyObservers(this.type);
     }
 
     /**

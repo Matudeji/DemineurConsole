@@ -5,8 +5,11 @@
  */
 package Model;
 
+import java.io.IOException;
 import java.util.Observable;
 import java.util.Observer;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 /**
  *
@@ -20,8 +23,8 @@ public class Game implements Observer {
         
     }
     
-    public void createMap(int width, int height, int mineProportion) {
-        map = new Map(width, height, mineProportion);
+    public void createMap(int width, int height, int mineProportion, Game gg) {
+        map = new Map(width, height, mineProportion,gg);
     }
     
     public void printMap() {
@@ -49,7 +52,7 @@ public class Game implements Observer {
 
     @Override
     public void update(Observable o, Object o1) {
-        
+        printMap();
     }
     
 }
