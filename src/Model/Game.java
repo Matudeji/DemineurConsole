@@ -43,7 +43,11 @@ public class Game implements Observer {
         // On dévoile la cellule du clic
         if (!map.map[x][y].getMine() && map.map[x][y].getHidden()) {
             map.map[x][y].setHidden(false);
-            map.map[x][y].setType('.');
+            if(map.map[x][y].getNumberOfMine() == 0) {
+                map.map[x][y].setType('.');
+            }else{
+                map.map[x][y].setType((char) map.map[x][y].getNumberOfMine());
+            }
         }
         // On va dévoiler les cellules voisines vide
         if (x != 0) {
