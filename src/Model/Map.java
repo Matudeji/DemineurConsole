@@ -18,7 +18,7 @@ public class Map extends Observable {
     private static int mineProportionMax = 85;
     public Cell[][] map;
 
-    public Map(int width, int height, int mineProportion) throws RuntimeException {
+    public Map(int width, int height, int mineProportion, Game o) throws RuntimeException {
         if(width <= 0 || height <= 0) {
             throw new RuntimeException("Les dimensions doivent être positives");
         }
@@ -26,14 +26,14 @@ public class Map extends Observable {
         this.height = height;
         this.mineProportion = mineProportion;
         map = new Cell[width][height];
-        initEmptyMap();
+        initEmptyMap(o);
     }
     
     
-    public void initEmptyMap() {
+    public void initEmptyMap(Game o) {
         for(int i=0; i<height; i++) {
             for(int j=0; j<width; j++) {
-                map[j][i] = new Cell(new Point(i, j), true, '#', false);
+                map[j][i] = new Cell(new Point(i, j), true, '#', false,o);
             }
         }
     }

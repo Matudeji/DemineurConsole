@@ -23,7 +23,7 @@ public class DemineurConsole {
         Controller controller = new Controller();
         Scanner scan = new Scanner(System.in);
 
-        game.createMap(5, 3, 5);
+        game.createMap(7, 7, 5, game);
         game.printMap();
         
         String s = scan.nextLine();
@@ -32,7 +32,9 @@ public class DemineurConsole {
         game.initMines(firstClic);
         game.revail(firstClic.getX(), firstClic.getY());
         game.printMap();
-        
+        String c = scan.nextLine();
+        Point clic = controller.parseString(c);
+        game.revail(clic.getX(),clic.getY());
     }
     
 }
