@@ -68,7 +68,7 @@ public class Map extends Observable {
     }
     
     public void initMines(Point firstClic) {
-        int mineToAdd = mineProportion;
+        int mineToAdd = (int) (( (float) mineProportion / (float) 100.0) * (float) (width*height));
         while (mineToAdd != 0) {
             int x = (int) (Math.random() * width );
             int y = (int) (Math.random() * height );

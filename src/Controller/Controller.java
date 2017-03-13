@@ -28,11 +28,7 @@ public class Controller {
     }
     
     public void readInput() {
-        //String s = scan.next();
-        //parseString(s);
-        /*try {
-            parseString();   
-        } catch();*/
+
     }
     
     public boolean parseString(String s,Game o) {

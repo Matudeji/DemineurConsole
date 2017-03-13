@@ -4,6 +4,7 @@
  * and open the template in the editor.
  */
 package demineurconsole;
+
 import Model.*;
 import Controller.*;
 import java.io.IOException;
@@ -19,7 +20,7 @@ public class DemineurConsole {
      * @param args the command line arguments
      */
     public static void main(String[] args) {
-        
+
         Game game = new Game();
         Controller controller = new Controller();
         Scanner scan = new Scanner(System.in);
@@ -71,7 +72,7 @@ public class DemineurConsole {
         // jeu
         do {
             s = scan.nextLine();
-        } while (controller.parseString(s,game));
+        } while (controller.parseString(s, game));
     }
-    
+
 }
