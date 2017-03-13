@@ -45,6 +45,7 @@ public class Map extends Observable {
             }
             System.out.println("");
         }
+        System.out.println("----------------------------------");
     }
     
     public void initMines(Point firstClic) {
@@ -90,7 +91,36 @@ public class Map extends Observable {
                         numberOfMine++;
                     }
                 }
+                //haut-gauche
+                if(j != 0 && i != 0) {
+                    if(map[j-1][i-1].getMine()) {
+                        numberOfMine++;
+                    }
+                }
+                //haut-droit
+                if(j != width-1 && i != 0) {
+                    if(map[j+1][i-1].getMine()) {
+                        numberOfMine++;
+                    }
+                }
+                //bas-gauche
+                if(j != 0 && i != height-1) {
+                    if(map[j-1][i+1].getMine()) {
+                        numberOfMine++;
+                    }
+                }
+                //bas-droit
+                if(j != width-1 && i != height-1) {
+                    if(map[j+1][i+1].getMine()) {
+                        numberOfMine++;
+                    }
+                }
                 map[j][i].setNumberOfMine(numberOfMine);
+                
+                if(!map[j][i].getMine() && numberOfMine != 0) {
+                    String convertedNumberOfMine = Integer.toString(numberOfMine);
+                    //map[j][i].setType(convertedNumberOfMine.charAt(0));
+                }
             }
         }
     }

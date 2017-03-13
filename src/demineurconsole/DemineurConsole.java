@@ -23,7 +23,7 @@ public class DemineurConsole {
         Controller controller = new Controller();
         Scanner scan = new Scanner(System.in);
 
-        game.createMap(7, 7, 5, game);
+        game.createMap(14, 7, 10, game);
         game.printMap();
         
         String s = scan.nextLine();
