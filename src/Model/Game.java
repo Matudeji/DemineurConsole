@@ -62,28 +62,28 @@ public class Game implements Observer {
             }
             //haut-gauche
             if (x != 0 && y != 0) {
-                if (map.map[x - 1][y - 1].getMine()) {
+                if (map.map[x - 1][y - 1].getHidden()) {
                     System.out.println("diagonaaaale");
                     revail(x - 1, y - 1);
                 }
             }
             //haut-droit
             if (x != map.getWidth() - 1 && y != 0) {
-                if (map.map[x + 1][y - 1].getMine()) {
+                if (map.map[x + 1][y - 1].getHidden()) {
                     System.out.println("diagonaaaale");
                     revail(x + 1, y - 1);
                 }
             }
             //bas-gauche
             if (x != 0 && y != map.getHeight() - 1) {
-                if (map.map[x - 1][y + 1].getMine()) {
+                if (map.map[x - 1][y + 1].getHidden()) {
                     System.out.println("diagonaaaale");
                     revail(x - 1, y + 1);
                 }
             }
             //bas-droit
             if (x != map.getWidth() - 1 && y != map.getHeight() - 1) {
-                if (map.map[x + 1][y + 1].getMine()) {
+                if (map.map[x + 1][y + 1].getHidden()) {
                     System.out.println("diagonaaaale");
                     revail(x + 1, y + 1);
                 }
@@ -104,10 +104,13 @@ public class Game implements Observer {
         //         map.map[x][y].setType(convertedNumberOfMine.charAt(0));
         //     }
         // }
+        System.out.println("revail");
         if (map.map[x][y].getNumberOfMine() != 0 && map.map[x][y].getHidden()) {
             map.map[x][y].setHidden(false);
             String convertedNumberOfMine = Integer.toString(map.map[x][y].getNumberOfMine());
+            
             map.map[x][y].setType(convertedNumberOfMine.charAt(0));
+            revailNeighborhood(x, y);
         } else if (map.map[x][y].getNumberOfMine() == 0 && map.map[x][y].getHidden()) {
             map.map[x][y].setHidden(false);
             map.map[x][y].setType('.');
