@@ -32,83 +32,77 @@ public class Game implements Observer {
     public void initMines(Point firstClic) {
         map.initMines(firstClic);
     }
+    
+    public boolean clic(Point clic) {
+        if(map.map[clic.getX()][clic.getY()].getMine()) {
+            return false;
+        }
+        revail(clic.getX(), clic.getY());
+        return true;
+    }
 
     private void revailNeighborhood(int x, int y) {
         // On va dévoiler les cellules voisines vide
-        if (map.map[x][y].getNumberOfMine() == 0) {
-            if (x != 0) {
-                if (map.map[x - 1][y].getHidden()) {
-                    revail(x - 1, y);
-                }
+        if (map.map[x][y].getNumberOfMine() == 0 && x != 0) {
+            if (map.map[x - 1][y].getHidden()) {
+                revail(x - 1, y);
             }
-            //haut
-            if (y != 0) {
-                if (map.map[x][y - 1].getHidden()) {
-                    revail(x, y - 1);
-                }
+        }
+        //haut
+        if (map.map[x][y].getNumberOfMine() == 0 && y != 0) {
+            if (map.map[x][y - 1].getHidden()) {
+                revail(x, y - 1);
             }
-            //droit
-            if (x != map.getWidth() - 1) {
-                if (map.map[x + 1][y].getHidden()) {
-                    //System.out.println("lol");
-                    revail(x + 1, y);
-                }
+        }
+        //droit
+        if (map.map[x][y].getNumberOfMine() == 0 && x != map.getWidth() - 1) {
+            if (map.map[x + 1][y].getHidden()) {
+                //System.out.println("lol");
+                revail(x + 1, y);
             }
-            //bas
-            if (y != map.getHeight() - 1) {
-                if (map.map[x][y + 1].getHidden()) {
-                    revail(x, y + 1);
-                }
+        }
+        //bas
+        if (map.map[x][y].getNumberOfMine() == 0 && y != map.getHeight() - 1) {
+            if (map.map[x][y + 1].getHidden()) {
+                revail(x, y + 1);
             }
-            //haut-gauche
-            if (x != 0 && y != 0) {
-                if (map.map[x - 1][y - 1].getHidden()) {
-                    System.out.println("diagonaaaale");
-                    revail(x - 1, y - 1);
-                }
+        }
+        //haut-gauche
+        if (map.map[x][y].getNumberOfMine() == 0 && x != 0 && y != 0) {
+            if (map.map[x - 1][y - 1].getHidden()) {
+                System.out.println("diagonaaaale");
+                revail(x - 1, y - 1);
             }
-            //haut-droit
-            if (x != map.getWidth() - 1 && y != 0) {
-                if (map.map[x + 1][y - 1].getHidden()) {
-                    System.out.println("diagonaaaale");
-                    revail(x + 1, y - 1);
-                }
+        }
+        //haut-droit
+        if (map.map[x][y].getNumberOfMine() == 0 && x != map.getWidth() - 1 && y != 0) {
+            if (map.map[x + 1][y - 1].getHidden()) {
+                System.out.println("diagonaaaale");
+                revail(x + 1, y - 1);
             }
-            //bas-gauche
-            if (x != 0 && y != map.getHeight() - 1) {
-                if (map.map[x - 1][y + 1].getHidden()) {
-                    System.out.println("diagonaaaale");
-                    revail(x - 1, y + 1);
-                }
+        }
+        //bas-gauche
+        if (map.map[x][y].getNumberOfMine() == 0 && x != 0 && y != map.getHeight() - 1) {
+            if (map.map[x - 1][y + 1].getHidden()) {
+                System.out.println("diagonaaaale");
+                revail(x - 1, y + 1);
             }
-            //bas-droit
-            if (x != map.getWidth() - 1 && y != map.getHeight() - 1) {
-                if (map.map[x + 1][y + 1].getHidden()) {
-                    System.out.println("diagonaaaale");
-                    revail(x + 1, y + 1);
-                }
+        }
+        //bas-droit
+        if (map.map[x][y].getNumberOfMine() == 0 && x != map.getWidth() - 1 && y != map.getHeight() - 1) {
+            if (map.map[x + 1][y + 1].getHidden()) {
+                System.out.println("diagonaaaale");
+                revail(x + 1, y + 1);
             }
         }
     }
 
     public void revail(int x, int y) {
-        // On dévoile la cellule du clic
-        // if (!map.map[x][y].getMine() && map.map[x][y].getHidden()) {
-        //     map.map[x][y].setHidden(false);
-        //     if (map.map[x][y].getNumberOfMine() == 0) {
-        //         map.map[x][y].setType('.');
-        //         revailNeighborhood(x, y);
-        //     } else if (map.map[x][y].getNumberOfMine() > 0) {
-        //         map.map[x][y].setHidden(false);
-        //         String convertedNumberOfMine = Integer.toString(map.map[x][y].getNumberOfMine());
-        //         map.map[x][y].setType(convertedNumberOfMine.charAt(0));
-        //     }
-        // }
-        System.out.println("revail");
+
         if (map.map[x][y].getNumberOfMine() != 0 && map.map[x][y].getHidden()) {
             map.map[x][y].setHidden(false);
             String convertedNumberOfMine = Integer.toString(map.map[x][y].getNumberOfMine());
-            
+
             map.map[x][y].setType(convertedNumberOfMine.charAt(0));
             revailNeighborhood(x, y);
         } else if (map.map[x][y].getNumberOfMine() == 0 && map.map[x][y].getHidden()) {

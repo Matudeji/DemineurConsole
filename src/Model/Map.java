@@ -39,8 +39,16 @@ public class Map extends Observable {
     }
     
     public void print() {
+        System.out.print(" ");
+        for(int j=0; j<width; j++) {
+            System.out.print(j);
+        }
+        System.out.println("");
         for(int i=0; i<height; i++) {
             for(int j=0; j<width; j++) {
+                if(j == 0) {
+                    System.out.print(i);
+                }
                 System.out.print(map[j][i].getType());
             }
             System.out.println("");
