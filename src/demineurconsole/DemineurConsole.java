@@ -26,7 +26,7 @@ public class DemineurConsole {
         Scanner scan = new Scanner(System.in);
 
         //initialisation
-        game.createMap(9, 5, 10, game);
+        game.createMap(9, 5, 5, game);
         game.printMap();
 
         String s = scan.nextLine();
