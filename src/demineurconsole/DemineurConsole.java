@@ -23,21 +23,50 @@ public class DemineurConsole {
         Game game = new Game();
         Controller controller = new Controller();
         Scanner scan = new Scanner(System.in);
-
-        game.createMap(7, 7, 5, game);
+        String s = ""; 
+        boolean init=true;
+        int width = 0;
+        int hight = 0;
+        int nombMine =0;
+        while(init){
+            try{
+            System.out.println("veuillez saisir la largeur du Démineur: ");
+            s = scan.nextLine();
+            width=Integer.parseInt(s);
+            System.out.println("veuillez saisir la longueur du Démineur: ");
+            s = scan.nextLine();
+            hight=Integer.parseInt(s);
+            System.out.println("veuillez saisir le pourcentage de mine: ");
+            s = scan.nextLine();
+            nombMine=Integer.parseInt(s);
+            init=false;
+            }
+            catch(NumberFormatException e){
+                System.out.println("Erreur de saisi, recommencé l'initialisation. ");
+            }
+            
+        }
+ 
+        
+        game.createMap(width, hight, nombMine, game);
         game.printMap();
         
-        String s = scan.nextLine();
+        init=true;
+        while(init){
         try{
-        String[] parts = s.split(" ");
-        Point clic = new Point(Integer.parseInt(parts[1]),Integer.parseInt(parts[2]));
-        game.initMines(clic);
-        controller.parseString(s,game);
-        game.printMap();
+            s = scan.nextLine();
+            String[] parts = s.split(" ");
+            Point clic = new Point(Integer.parseInt(parts[1]),Integer.parseInt(parts[2]));
+            game.initMines(clic);
+            init=false;
         }
-        catch(NumberFormatException e){
+        catch(ArrayIndexOutOfBoundsException d){
             System.out.println("erreur d'initialisation du demineur!");
         }
+        }
+        controller.parseString(s,game);
+        game.printMap();
+        
         
         // jeu
         do {

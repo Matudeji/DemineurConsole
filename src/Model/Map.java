@@ -24,6 +24,17 @@ public class Map extends Observable {
         }
         this.width = width;
         this.height = height;
+        if(mineProportion<0 || mineProportion>100){
+            this.mineProportion = (width*height)/2;
+        }
+        else{
+            if(mineProportion>= 85){
+                this.mineProportion = (width*height)* (85/100);
+            }
+            else{
+                this.mineProportion = (width*height)* (mineProportion/100);
+            }
+        }
         this.mineProportion = mineProportion;
         map = new Cell[width][height];
         initEmptyMap(o);
