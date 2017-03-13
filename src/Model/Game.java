@@ -5,6 +5,7 @@
  */
 package Model;
 
+import java.io.IOException;
 import java.util.Observable;
 import java.util.Observer;
 
@@ -32,9 +33,17 @@ public class Game implements Observer {
     public void initMines(Point firstClic) {
         map.initMines(firstClic);
     }
-    
+
+    public void mark(int x, int y, char mon) {
+        if (map.map[x][y].getHidden()) {
+            map.map[x][y].setType(mon);
+        } else {
+            System.out.println("La case est deja dévoilé");
+        }
+    }
+
     public boolean clic(Point clic) {
-        if(map.map[clic.getX()][clic.getY()].getMine()) {
+        if (map.map[clic.getX()][clic.getY()].getMine()) {
             return false;
         }
         revail(clic.getX(), clic.getY());
@@ -70,28 +79,36 @@ public class Game implements Observer {
         //haut-gauche
         if (map.map[x][y].getNumberOfMine() == 0 && x != 0 && y != 0) {
             if (map.map[x - 1][y - 1].getHidden()) {
-                System.out.println("diagonaaaale");
                 revail(x - 1, y - 1);
             }
         }
         //haut-droit
         if (map.map[x][y].getNumberOfMine() == 0 && x != map.getWidth() - 1 && y != 0) {
             if (map.map[x + 1][y - 1].getHidden()) {
-                System.out.println("diagonaaaale");
                 revail(x + 1, y - 1);
             }
         }
         //bas-gauche
         if (map.map[x][y].getNumberOfMine() == 0 && x != 0 && y != map.getHeight() - 1) {
             if (map.map[x - 1][y + 1].getHidden()) {
-                System.out.println("diagonaaaale");
                 revail(x - 1, y + 1);
             }
         }
         //bas-droit
         if (map.map[x][y].getNumberOfMine() == 0 && x != map.getWidth() - 1 && y != map.getHeight() - 1) {
             if (map.map[x + 1][y + 1].getHidden()) {
-                System.out.println("diagonaaaale");
+                revail(x + 1, y + 1);
+            }
+        }
+        //bas-gauche
+        if (map.map[x][y].getNumberOfMine() == 0 && x != 0 && y != map.getHeight() - 1) {
+            if (map.map[x - 1][y + 1].getHidden()) {
+                revail(x - 1, y + 1);
+            }
+        }
+        //bas-droit
+        if (map.map[x][y].getNumberOfMine() == 0 && x != map.getWidth() - 1 && y != map.getHeight() - 1) {
+            if (map.map[x + 1][y + 1].getHidden()) {
                 revail(x + 1, y + 1);
             }
         }
@@ -112,9 +129,25 @@ public class Game implements Observer {
         }
     }
 
+    public final static void clearConsole() {
+        try {
+            final String os = System.getProperty("os.name");
+
+            if (os.contains("Windows")) {
+                Runtime.getRuntime().exec("cls");
+            } else {
+                Runtime.getRuntime().exec("clear");
+            }
+        } catch (final IOException e) {
+            //  Handle any exceptions.
+        }
+    }
+
     @Override
     public void update(Observable o, Object o1) {
+        clearConsole();
         printMap();
+        System.out.println("==========================");
 
     }
 

@@ -7,6 +7,7 @@ package demineurconsole;
 
 import Model.*;
 import Controller.*;
+import java.io.IOException;
 import java.util.Scanner;
 
 /**
@@ -29,16 +30,21 @@ public class DemineurConsole {
         game.printMap();
 
         String s = scan.nextLine();
-        Point clic = controller.parseString(s);
-        game.initMines(clic);
-        game.revail(clic.getX(), clic.getY());
-        game.printMap();
-        
+
+        try {
+            String[] parts = s.split(" ");
+            Point clic = new Point(Integer.parseInt(parts[1]), Integer.parseInt(parts[2]));
+            game.initMines(clic);
+            controller.parseString(s, game);
+            game.printMap();
+        } catch (NumberFormatException e) {
+            System.out.println("erreur d'initialisation du demineur!");
+        }
+
         // jeu
         do {
             s = scan.nextLine();
-            clic = controller.parseString(s);
-        } while (game.clic(clic));
+        } while (controller.parseString(s, game));
     }
 
 }
