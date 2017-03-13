@@ -7,6 +7,7 @@ package Controller;
 
 import java.util.Scanner;
 import Model.*;
+import java.io.IOException;
 
 /**
  *
@@ -34,15 +35,41 @@ public class Controller {
         } catch();*/
     }
     
-    public Point parseString(String s) {
-        String[] parts = s.split(" ");
-        System.out.println(s);
-        if(parts[0].charAt(0) == revail) {
-            int x = Integer.parseInt(parts[1]);
-            int y = Integer.parseInt(parts[2]);
-            return new Point(x, y);
+    public boolean parseString(String s,Game o) {
+        try {
+            String[] parts = s.split(" ");
+            System.out.println(s);
+            if(parts[0].charAt(0) == revail) {
+                int x = Integer.parseInt(parts[1]);
+                int y = Integer.parseInt(parts[2]);
+                return o.clic(new Point(x,y));
+            }
+            if(parts[0].charAt(0) == mark) {
+                int x = Integer.parseInt(parts[1]);
+                int y = Integer.parseInt(parts[2]);
+                if(parts[3].charAt(0) == mine){
+                    o.mark(x,y,'!');
+                }
+                if(parts[3].charAt(0) == undecide){
+                    o.mark(x,y,undecide);
+                }
+                if(parts[3].charAt(0) == unmark){
+                    o.mark(x,y,unmark);
+                }
+
+                return true;
+            }
+            if(parts[0].charAt(0) == quit){
+                    return false;
+            }
         }
-        return new Point(0, 0);
+        catch(NumberFormatException e){
+            System.out.println("mauvaise commande tapée");
+        }
+        finally{
+            System.out.println("mauvaise commande tapée");
+        }
+        return true;
     }
     
 }
