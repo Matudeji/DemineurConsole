@@ -59,10 +59,7 @@ public class Controller {
                     return false;
             }
         }
-        catch(NumberFormatException e){
-            System.out.println("mauvaise commande tapée");
-        }
-        finally{
+        catch(ArrayIndexOutOfBoundsException e){
             System.out.println("mauvaise commande tapée");
         }
         return true;
