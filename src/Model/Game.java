@@ -5,6 +5,7 @@
  */
 package Model;
 
+import View.View;
 import java.io.IOException;
 import java.util.Observable;
 import java.util.Observer;
@@ -16,9 +17,22 @@ import java.util.Observer;
 public class Game implements Observer {
 
     private Map map;
+    private View view;
 
     public Game() {
 
+    }
+    
+    public Map getMap() {
+        return map;
+    }
+    
+    public View getView() {
+        return view;
+    }
+    
+    public void addView(View view) {
+        this.view = view;
     }
 
     public void createMap(int width, int height, int mineProportion, Game gg) {
@@ -163,7 +177,7 @@ public class Game implements Observer {
     @Override
     public void update(Observable o, Object o1) {
         clearConsole();
-        printMap();
+        view.print();
         System.out.println("==========================");
 
     }

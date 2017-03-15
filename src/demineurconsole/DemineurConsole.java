@@ -7,6 +7,7 @@ package demineurconsole;
 
 import Model.*;
 import Controller.*;
+import View.*;
 import java.io.IOException;
 import java.util.Scanner;
 
@@ -50,7 +51,9 @@ public class DemineurConsole {
  
         
         game.createMap(width, hight, nombMine, game);
-        game.printMap();
+        ViewConsole view = new ViewConsole(game.getMap());
+        game.addView(view);
+        game.getView().print();
         
         init=true;
         while(init){
@@ -66,7 +69,7 @@ public class DemineurConsole {
         }
         }
         controller.parseString(s,game);
-        game.printMap();
+        game.getView().print();
         
         int GameState=0;
         // jeu
