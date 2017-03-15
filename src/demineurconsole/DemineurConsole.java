@@ -51,7 +51,7 @@ public class DemineurConsole {
  
         
         game.createMap(width, hight, nombMine, game);
-        ViewConsole view = new ViewConsole(game.getMap());
+        ViewGUI view = new ViewGUI(game.getMap());
         game.addView(view);
         game.getView().print();
         
