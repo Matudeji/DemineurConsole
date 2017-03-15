@@ -68,11 +68,24 @@ public class DemineurConsole {
         controller.parseString(s,game);
         game.printMap();
         
-        
+        int GameState=0;
         // jeu
         do {
             s = scan.nextLine();
-        } while (controller.parseString(s, game));
+            GameState=controller.parseString(s, game);
+        } while (GameState==0);
+        
+        switch(GameState){
+            case -1: System.out.println("Booom! You loose !");
+                break;
+            case -2:
+                    System.out.println("GoodBye");
+                    break;
+            case 1:
+                    System.out.println("Yeaaah! You win !");
+            default:
+                break;
+        }
     }
 
 }

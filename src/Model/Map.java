@@ -15,6 +15,7 @@ public class Map extends Observable {
     private int width;
     private int height;
     private int mineProportion;
+    private int stayingMine;
     private static int mineProportionMax = 85;
     public Cell[][] map;
 
@@ -26,16 +27,21 @@ public class Map extends Observable {
         this.height = height;
         if(mineProportion<0 || mineProportion>100){
             this.mineProportion = (width*height)/2;
+            System.out.println(this.mineProportion);
+            this.stayingMine=this.mineProportion;
         }
         else{
             if(mineProportion>= 85){
-                this.mineProportion = (width*height)* (85/100);
+                this.mineProportion = (int) ((width*height)* (85.0/100.0));
+                System.out.println(this.mineProportion);
+                this.stayingMine=this.mineProportion;
             }
             else{
-                this.mineProportion = (width*height)* (mineProportion/100);
+                this.mineProportion = (int) ( ( (float) width* (float) height)* ( (float) mineProportion/100.0) );
+                System.out.println(this.mineProportion);
+                this.stayingMine=this.mineProportion;
             }
         }
-        this.mineProportion = mineProportion;
         map = new Cell[width][height];
         initEmptyMap(o);
     }
@@ -68,7 +74,7 @@ public class Map extends Observable {
     }
     
     public void initMines(Point firstClic) {
-        int mineToAdd = (int) (( (float) mineProportion / (float) 100.0) * (float) (width*height));
+        int mineToAdd = mineProportion;
         while (mineToAdd != 0) {
             int x = (int) (Math.random() * width );
             int y = (int) (Math.random() * height );
@@ -152,7 +158,26 @@ public class Map extends Observable {
         return map[x][y];
     }
     
-    
+    public boolean testIfMine(int x, int y,boolean mark){
+        if(mark){   // on marque
+            if(map[x][y].getMine()==true){ // si il y a une mine
+            this.stayingMine-=1;
+            return true;
+            }
+            else{
+                return false;
+            }
+        }
+        else{   // on demarque
+            if(map[x][y].getMine()==true){ // si il y a une mine sur la cellule
+                this.stayingMine+=1;
+                return true;
+            }
+            else{
+                return false;
+            }
+        }
+    }
 
     /**
      * @return the width
@@ -174,7 +199,19 @@ public class Map extends Observable {
     public int getHeight() {
         return height;
     }
-
+    
+    public boolean mapAllViewed(){
+        for(int i=0; i<height;i++){
+            for(int j=0;i<width;j++){
+                if(map[i][j].getMine()==false){
+                    if(map[i][j].getHidden()==true){
+                        return false;
+                    }
+                }
+            }
+        }
+        return true;
+    }
     /**
      * @param height the height to set
      */
@@ -209,5 +246,11 @@ public class Map extends Observable {
     public static void setMineProportionMax(int aMineProportionMax) {
         mineProportionMax = aMineProportionMax;
     }
-    
+     public void setStayingMine(int stayingMine) {
+        this.stayingMine = stayingMine;
+    }
+
+    public int getStayingMine() {
+        return stayingMine;
+    }
 }
