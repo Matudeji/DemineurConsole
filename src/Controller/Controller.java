@@ -31,38 +31,48 @@ public class Controller {
 
     }
     
-    public static boolean parseString(String s,Game o) {
+    public static int parseString(String s,Game o) {
         try {
             String[] parts = s.split(" ");
             System.out.println(s);
             if(parts[0].charAt(0) == revail) {
                 int x = Integer.parseInt(parts[1]);
                 int y = Integer.parseInt(parts[2]);
-                return o.clic(new Point(x,y));
+                
+                if(o.clic(new Point(x,y))){
+                    return o.Victory();
+                }
+                else{
+                    return -1;
+                }
             }
             if(parts[0].charAt(0) == mark) {
                 int x = Integer.parseInt(parts[1]);
                 int y = Integer.parseInt(parts[2]);
                 if(parts[3].charAt(0) == mine){
-                    o.mark(x,y,'!');
+                    o.mark(x,y,'!');    // on marque la case
+                    o.testifmine(x,y,true);
+                    System.out.println("marche");
+                    return o.Victory();// on decrement peut etre le nbr de mine restante
                 }
                 if(parts[3].charAt(0) == undecide){
                     o.mark(x,y,undecide);
                 }
                 if(parts[3].charAt(0) == unmark){
                     o.mark(x,y,unmark);
+                    o.testifmine(x,y,false);
                 }
 
-                return true;
+                return 0;
             }
             if(parts[0].charAt(0) == quit){
-                    return false;
+                    return -2;
             }
         }
         catch(ArrayIndexOutOfBoundsException e){
             System.out.println("mauvaise commande tapée");
         }
-        return true;
+        return 0;
     }
     
 }

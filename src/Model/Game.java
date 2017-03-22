@@ -135,6 +135,24 @@ public class Game implements Observer {
             }
         }
     }
+    
+    public int Victory() {
+        if(map.getStayingMine()==0){
+            if(map.mapAllViewed()==true){
+                return 1;
+            }
+            else{
+                return 0;
+            }
+        }
+        else{
+            return 0;
+        }
+    }
+    
+    public boolean testifmine(int x, int y, boolean marque){
+        return map.testIfMine(x, y, marque);
+    }
 
     public void revail(int x, int y) {
 
