@@ -24,6 +24,7 @@ public class GraphicalCellView extends JButton implements ActionListener {
 
     public GraphicalCellView(Cell cell, boolean enabled, Game game) {
         super(""+cell.getType());
+        this.game = game;
         this.cell = cell;
         this.enabled = enabled;
 
