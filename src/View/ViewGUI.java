@@ -5,6 +5,7 @@
  */
 package View;
 
+import Model.Game;
 import Model.Map;
 import java.awt.FlowLayout;
 import java.awt.GridLayout;
@@ -19,17 +20,18 @@ import javax.swing.JFrame;
  * @author arthur
  */
 public class ViewGUI implements View {
-
+    Game game;
     Map map;
     GraphicalGridView grid;
     JFrame mainFrame;
     
 
-    public ViewGUI(Map map) {
-        this.map = map;
+    public ViewGUI(Game game) {
+        this.game = game;
+        this.map = game.getMap();
         mainFrame = new JFrame("Déminouille");
         mainFrame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        this.grid = new GraphicalGridView(map, mainFrame); 
+        this.grid = new GraphicalGridView(game, mainFrame); 
     }
     
     @Override

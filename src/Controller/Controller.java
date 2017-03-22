@@ -31,7 +31,7 @@ public class Controller {
 
     }
     
-    public boolean parseString(String s,Game o) {
+    public static boolean parseString(String s,Game o) {
         try {
             String[] parts = s.split(" ");
             System.out.println(s);

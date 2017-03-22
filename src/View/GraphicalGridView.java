@@ -5,6 +5,7 @@
  */
 package View;
 
+import Model.Game;
 import Model.Map;
 import java.awt.GridLayout;
 import java.awt.Image;
@@ -19,12 +20,15 @@ import javax.swing.JPanel;
  * @author arthur
  */
 public class GraphicalGridView extends JPanel {
+    Game game;
     Map map;
     JFrame frame;
     GridLayout grid;
     
-    GraphicalGridView(Map map, JFrame mainFrame) {
-        this.map = map;
+    GraphicalGridView(Game game, JFrame mainFrame) {
+        super();
+        this.game = game;
+        this.map = game.getMap();
         this.frame = mainFrame;
         grid = new GridLayout(map.getHeight(), map.getWidth(), 5, 5);
         frame.setLayout(grid);
@@ -37,15 +41,8 @@ public class GraphicalGridView extends JPanel {
         
         for (int i = 0; i < map.getHeight(); i++) {
             for (int j = 0; j < map.getWidth(); j++) {
-                JButton button = new JButton();
-                try {
-                  Image img = ImageIO.read(getClass().getResource("images/gaetane.jpg"));
-                  button.setIcon(new ImageIcon(img));
-                  button.addActionListener(new ClickListener());
-                } catch (Exception ex) {
-                  System.out.println(ex);
-                }
-                frame.add(button);
+                GraphicalCellView cellView = new GraphicalCellView(map.map[j][i], true, game);
+                frame.add(cellView);
             }
         }
 

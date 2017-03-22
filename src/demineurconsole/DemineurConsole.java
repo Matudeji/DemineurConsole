@@ -23,13 +23,14 @@ public class DemineurConsole {
     public static void main(String[] args) {
 
         Game game = new Game();
-        Controller controller = new Controller();
+        //Controller controller = new Controller();
         Scanner scan = new Scanner(System.in);
         String s = "";
         boolean init = true;
         int width = 0;
         int hight = 0;
         int nombMine = 0;
+        
         while (init) {
             try {
                 System.out.println("veuillez saisir la largeur du Démineur: ");
@@ -50,7 +51,7 @@ public class DemineurConsole {
 
         game.createMap(width, hight, nombMine, game);
         
-        ViewGUI viewGUI = new ViewGUI(game.getMap());
+        ViewGUI viewGUI = new ViewGUI(game);
         game.addView(viewGUI);
         
         ViewConsole viewConsole = new ViewConsole(game.getMap());
@@ -71,12 +72,12 @@ public class DemineurConsole {
                 System.out.println("erreur d'initialisation du demineur!");
             }
         }
-        controller.parseString(s, game);
+        Controller.parseString(s, game);
 
         // jeu
         do {
             s = scan.nextLine();
-        } while (controller.parseString(s, game));
+        } while (Controller.parseString(s, game));
 
     }
 

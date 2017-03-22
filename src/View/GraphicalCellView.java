@@ -5,62 +5,35 @@
  */
 package View;
 
-
-import java.awt.Image;
-import javax.imageio.ImageIO;
+import Controller.Controller;
+import Model.Cell;
+import Model.Game;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import javax.swing.JButton;
 
 /**
  *
  * @author arthur
  */
-public class GraphicalCellView extends JButton {
-    private int x;
-    private int y;
+public class GraphicalCellView extends JButton implements ActionListener {
+
+    private Cell cell;
     private boolean enabled;
-    private String text;
-    private Image img;
+    private Game game;
 
-    public GraphicalCellView(int x, int y, boolean enabled, String text, String img) {
-        this.x = x;
-        this.y = y;
+    public GraphicalCellView(Cell cell, boolean enabled, Game game) {
+        super(""+cell.getType());
+        this.cell = cell;
         this.enabled = enabled;
-        this.text = text;
-        try {
-            this.img = ImageIO.read(getClass().getResource("images/gaetane.jpg"));
-        } catch(Exception e){
-            System.out.println(e);
-        }
+
+        this.addActionListener(this);
     }
     
-    
-
-    /**
-     * @return the x
-     */
-    public int getX() {
-        return x;
-    }
-
-    /**
-     * @param x the x to set
-     */
-    public void setX(int x) {
-        this.x = x;
-    }
-
-    /**
-     * @return the y
-     */
-    public int getY() {
-        return y;
-    }
-
-    /**
-     * @param y the y to set
-     */
-    public void setY(int y) {
-        this.y = y;
+    @Override
+    public void actionPerformed(ActionEvent e) {
+        System.out.println("something happened");
+        Controller.parseString("d 2 2", game);
     }
 
     /**
@@ -79,5 +52,5 @@ public class GraphicalCellView extends JButton {
         //
         this.enabled = enabled;
     }
-    
+
 }
