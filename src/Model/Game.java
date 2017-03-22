@@ -141,6 +141,7 @@ public class Game implements Observer {
             return 0;
         }
     }
+    
     public boolean testifmine(int x, int y, boolean marque){
         return map.testIfMine(x, y, marque);
     }

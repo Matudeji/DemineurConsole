@@ -52,6 +52,7 @@ public class Controller {
                 if(parts[3].charAt(0) == mine){
                     o.mark(x,y,'!');    // on marque la case
                     o.testifmine(x,y,true);
+                    System.out.println("marche");
                     return o.Victory();// on decrement peut etre le nbr de mine restante
                 }
                 if(parts[3].charAt(0) == undecide){

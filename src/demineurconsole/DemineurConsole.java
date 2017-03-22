@@ -10,7 +10,7 @@ import Controller.*;
 import View.*;
 import java.io.IOException;
 import java.util.Scanner;
-
+import java.lang.RuntimeException;
 /**
  *
  * @author alan
@@ -32,41 +32,52 @@ public class DemineurConsole {
         int nombMine =0;
         while(init){
             try{
-            System.out.println("veuillez saisir la largeur du Démineur: ");
-            s = scan.nextLine();
-            width=Integer.parseInt(s);
-            System.out.println("veuillez saisir la longueur du Démineur: ");
-            s = scan.nextLine();
-            hight=Integer.parseInt(s);
-            System.out.println("veuillez saisir le pourcentage de mine: ");
-            s = scan.nextLine();
-            nombMine=Integer.parseInt(s);
-            init=false;
+                System.out.println("veuillez saisir la largeur du Démineur: ");
+                s = scan.nextLine();
+                width=Integer.parseInt(s);
+                System.out.println("veuillez saisir la longueur du Démineur: ");
+                s = scan.nextLine();
+                hight=Integer.parseInt(s);
+                System.out.println("veuillez saisir le pourcentage de mine: ");
+                s = scan.nextLine();
+                nombMine=Integer.parseInt(s);
+
+                if(width*hight>3){
+                    game.createMap(width, hight, nombMine, game);
+                    ViewConsole view = new ViewConsole(game.getMap());
+                    game.addView(view);
+                    game.getView().print();
+                    init=false;
+                }
+
+                else{
+                    System.out.println("Vous devez mettre minimum une superficie de 4 cases!");
+                }
             }
             catch(NumberFormatException e){
                 System.out.println("Erreur de saisi, recommencé l'initialisation. ");
             }
+            catch( RuntimeException b){
+                System.out.println("Erreur de saisi, recommencé l'initialisation. ");
+            } 
             
         }
  
         
-        game.createMap(width, hight, nombMine, game);
-        ViewConsole view = new ViewConsole(game.getMap());
-        game.addView(view);
-        game.getView().print();
         
         init=true;
         while(init){
-        try{
-            s = scan.nextLine();
-            String[] parts = s.split(" ");
-            Point clic = new Point(Integer.parseInt(parts[1]),Integer.parseInt(parts[2]));
-            game.initMines(clic);
-            init=false;
-        }
-        catch(ArrayIndexOutOfBoundsException d){
-            System.out.println("erreur d'initialisation du demineur!");
-        }
+            try{
+                s = scan.nextLine();
+                String[] parts = s.split(" ");
+                Point clic = new Point(Integer.parseInt(parts[1]),Integer.parseInt(parts[2]));
+                game.initMines(clic);
+                System.out.println("blabla");
+                init=false;
+            }
+            catch(ArrayIndexOutOfBoundsException d){
+                System.out.println("erreur d'initialisation du demineur!");
+            }
         }
         controller.parseString(s,game);
         game.getView().print();
@@ -74,6 +85,7 @@ public class DemineurConsole {
         int GameState=0;
         // jeu
         do {
+            System.out.println("taper votre commande:");
             s = scan.nextLine();
             GameState=controller.parseString(s, game);
         } while (GameState==0);

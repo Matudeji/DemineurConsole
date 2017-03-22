@@ -76,7 +76,7 @@ public class Cell extends Observable {
      * @return the mine
      */
     public boolean getMine() {
-        return mine;
+        return this.mine;
     }
 
     /**

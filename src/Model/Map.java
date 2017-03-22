@@ -5,7 +5,10 @@
  */
 package Model;
 
+import static java.lang.Math.random;
 import java.util.Observable;
+import java.util.Random;
+import java.util.ArrayList;
 
 /**
  *
@@ -50,7 +53,8 @@ public class Map extends Observable {
     public void initEmptyMap(Game o) {
         for(int i=0; i<height; i++) {
             for(int j=0; j<width; j++) {
-                map[j][i] = new Cell(new Point(i, j), true, '#', false,o);
+                 Cell uneCell = new Cell(new Point(i, j), true, '#', false,o);
+                 map[j][i]=uneCell;
             }
         }
     }
@@ -74,17 +78,33 @@ public class Map extends Observable {
     }
     
     public void initMines(Point firstClic) {
-        int mineToAdd = mineProportion;
+        int mineToAdd=1;
+        if(mineProportion==0){
+            mineToAdd =1;
+        }
+        else{
+            mineToAdd = mineProportion;
+        }
+        int a=firstClic.getX();
+        int b=firstClic.getY();
+        ArrayList<Cell> al = new ArrayList<Cell>();
+         for(int i=0; i<height; i++) {
+                for(int j=0; j<width; j++) {
+                    if(i!=b || j!=a){
+                        al.add(map[j][i]);
+                    }
+                }
+            }
         while (mineToAdd != 0) {
-            int x = (int) (Math.random() * width );
-            int y = (int) (Math.random() * height );
-            
-            if(!map[x][y].getMine() && x != firstClic.getX() && y != firstClic.getY()) {
-                map[x][y].setMine(true);   
-                map[x][y].setType('x'); 
+            Random random = new Random();
+            int x = random.nextInt(al.size());
+            System.out.println("nbrmine restante:"+al.size()+mineToAdd +x);
+                al.get(x).setMine(true);  
+                al.get(x).setType('#'); 
+                al.remove(x);
                 mineToAdd--;
             }
-        }
+        
         initNumberOfMines();
     }
     
@@ -202,9 +222,9 @@ public class Map extends Observable {
     
     public boolean mapAllViewed(){
         for(int i=0; i<height;i++){
-            for(int j=0;i<width;j++){
-                if(map[i][j].getMine()==false){
-                    if(map[i][j].getHidden()==true){
+            for(int j=0;j<width;j++){
+                if(map[j][i].getMine()==false){
+                    if(map[j][i].getHidden()==true){
                         return false;
                     }
                 }
