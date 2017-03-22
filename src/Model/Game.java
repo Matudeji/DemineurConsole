@@ -7,6 +7,7 @@ package Model;
 
 import View.View;
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.Observable;
 import java.util.Observer;
 
@@ -17,9 +18,10 @@ import java.util.Observer;
 public class Game implements Observer {
 
     private Map map;
-    private View view;
+    private ArrayList<View> views;
 
     public Game() {
+        views = new ArrayList();
 
     }
     
@@ -27,12 +29,18 @@ public class Game implements Observer {
         return map;
     }
     
-    public View getView() {
-        return view;
+    public View getView(int i) {
+        return views.get(i);
     }
     
     public void addView(View view) {
-        this.view = view;
+        System.out.println(view);
+        try{
+            this.views.add(view);
+        }catch(Exception e){
+            System.err.println(e.getMessage());
+            e.printStackTrace();
+        }
     }
 
     public void createMap(int width, int height, int mineProportion, Game gg) {
@@ -160,7 +168,9 @@ public class Game implements Observer {
     @Override
     public void update(Observable o, Object o1) {
         clearConsole();
-        view.print();
+        for(int i=0; i< views.size(); i++) {
+            views.get(i).print();
+        }
         System.out.println("==========================");
 
     }
