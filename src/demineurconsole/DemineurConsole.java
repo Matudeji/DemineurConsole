@@ -62,8 +62,7 @@ public class DemineurConsole {
             } 
             
         }
- 
-        
+
         
         init=true;
         while(init){
