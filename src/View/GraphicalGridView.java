@@ -7,10 +7,8 @@ package View;
 
 import Model.Game;
 import Model.Map;
+import java.awt.Component;
 import java.awt.GridLayout;
-import java.awt.Image;
-import javax.imageio.ImageIO;
-import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
@@ -20,34 +18,52 @@ import javax.swing.JPanel;
  * @author arthur
  */
 public class GraphicalGridView extends JPanel {
+
     Game game;
     Map map;
     JFrame frame;
     GridLayout grid;
-    
+
     GraphicalGridView(Game game, JFrame mainFrame) {
         super();
         this.game = game;
         this.map = game.getMap();
         this.frame = mainFrame;
         grid = new GridLayout(map.getHeight(), map.getWidth(), 5, 5);
-        frame.setLayout(grid);
+        this.setLayout(grid);
+        this.map = game.getMap();
+        /*grid = new GridLayout(map.getHeight(), map.getWidth(), 5, 5);
+        this.setLayout(grid);
+        this.add(new GraphicalCellView(map.map[0][0], true, game));
+        this.add(new bouton(map.map[0][0], true, game));
+        this.add(new bouton(map.map[0][0], true, game));
+        this.add(new bouton(map.map[0][0], true, game));
+*/
+        //this.add(new JButton(""+map.map[0][0].getType()));
+        this.print();
     }
-    
+
     public void print() {
-        
-        //frame.removeAll();
-        frame.setLayout(grid);
-        
         for (int i = 0; i < map.getHeight(); i++) {
             for (int j = 0; j < map.getWidth(); j++) {
-                GraphicalCellView cellView = new GraphicalCellView(map.map[j][i], true, game);
-                frame.add(cellView);
+                //GraphicalCellView cellView = new GraphicalCellView(map.map[j][i], true, game);
+                //this.add(cellView);
+                this.add(new bouton(map.map[j][i], true, game));
+                System.out.println("frame add");
             }
         }
-
-        frame.setSize(map.getWidth()*50, map.getHeight()*50);
-        frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        frame.setVisible(true);
+        frame.setSize(map.getWidth() * 50, map.getHeight() * 50);
+        this.setVisible(true);
+        
+        
+     
     }
+
+    public GraphicalCellView getButton(int i, int j) {
+        System.out.println(i + " " + j);
+        System.out.println("getCompo " + this.grid.getRows() * i + j);
+        System.out.println(this.getComponents().length);
+        return (GraphicalCellView) this.getComponent(this.grid.getRows() * i + j);
+    }
+
 }

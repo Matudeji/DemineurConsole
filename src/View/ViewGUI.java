@@ -7,35 +7,59 @@ package View;
 
 import Model.Game;
 import Model.Map;
-import java.awt.FlowLayout;
 import java.awt.GridLayout;
-import java.awt.Image;
-import javax.imageio.ImageIO;
-import javax.swing.ImageIcon;
+import java.util.Observable;
+import java.util.Observer;
 import javax.swing.JButton;
 import javax.swing.JFrame;
+import javax.swing.JPanel;
 
 /**
  *
  * @author arthur
  */
-public class ViewGUI implements View {
+public class ViewGUI extends JFrame implements View, Observer {
+
     Game game;
     Map map;
+    Observable gameModel;
     GraphicalGridView grid;
-    JFrame mainFrame;
-    
 
-    public ViewGUI(Game game) {
-        this.game = game;
+    public ViewGUI(Game game, Observable gameModel) {
+        super("Déminouille");
+        /*this.game = game;
         this.map = game.getMap();
-        mainFrame = new JFrame("Déminouille");
-        mainFrame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        this.grid = new GraphicalGridView(game, mainFrame); 
+        this.gameModel = gameModel;
+        this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        this.grid = new GraphicalGridView(game, this);
+        this.add(grid);
+        this.print();
+        this.setVisible(true);
+         */
+        this.setSize(300, 400);
+        this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        this.setVisible(true);
+        this.grid = new GraphicalGridView(game, this);
+        this.add(grid);
+
     }
-    
+
     @Override
     public void print() {
-        grid.print();
+        this.grid.print();
+    }
+
+    @Override
+    public void update(Observable o, Object o1) {
+        // loop through each cell
+
+        if (gameModel == o) {
+            System.out.println("update de la vue");
+            for (int i = 0; i < this.game.getMap().getHeight(); i++) {
+                for (int j = 0; j < this.game.getMap().getWidth(); j++) {
+                    this.grid.getButton(i, j);
+                }
+            }
+        }
     }
 }

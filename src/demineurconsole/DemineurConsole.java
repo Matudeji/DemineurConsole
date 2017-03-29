@@ -46,12 +46,12 @@ public class DemineurConsole {
                 if(width*hight>3){
                     game.createMap(width, hight, nombMine, game);
                     ViewConsole viewC = new ViewConsole(game.getMap());
-                    ViewGUI viewG = new ViewGUI(game);
+                    //ViewGUI viewG = new ViewGUI(game);
                     
                     game.addView(viewC);
-                    game.addView(viewG);
+                    //game.addView(viewG);
                     game.getView(0).print();
-                    game.getView(1).print();
+                    //game.getView(1).print();
                     init=false;
                 }
 
@@ -84,9 +84,7 @@ public class DemineurConsole {
             }
         }
         Controller.parseString(s,game);
-        game.getView(0).print();
-        game.getView(1).print();
-        
+        game.getView(0).print();        
         int GameState=0;
         // jeu
         do {

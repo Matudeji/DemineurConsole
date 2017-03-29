@@ -22,19 +22,28 @@ public class GraphicalCellView extends JButton implements ActionListener {
     private boolean enabled;
     private Game game;
 
-    public GraphicalCellView(Cell cell, boolean enabled, Game game) {
-        super(""+cell.getType());
+    GraphicalCellView(Cell cell, boolean enabled, Game game) {
+        super("#");
+        /*super(""+cell.getType());
+        System.out.println(""+cell.getType());
         this.game = game;
         this.cell = cell;
         this.enabled = enabled;
 
         this.addActionListener(this);
+        */
+    }
+    
+    
+    public void updateUI() {
+        //this.setText("");
+        System.out.println("updateUI ");
     }
     
     @Override
     public void actionPerformed(ActionEvent e) {
-        System.out.println("something happened");
-        Controller.parseString("d 2 2", game);
+        System.out.println("bouton: " + cell.getPosition().getX() + " " + cell.getPosition().getY());
+        Controller.clic(cell.getPosition(), game);
     }
 
     /**

@@ -23,6 +23,8 @@ public class Map extends Observable {
     public Cell[][] map;
 
     public Map(int width, int height, int mineProportion, Game o) throws RuntimeException {
+        System.out.println(width);
+        System.out.println(height);
         if(width <= 0 || height <= 0) {
             throw new RuntimeException("Les dimensions doivent être positives");
         }
@@ -54,6 +56,7 @@ public class Map extends Observable {
         for(int i=0; i<height; i++) {
             for(int j=0; j<width; j++) {
                  Cell uneCell = new Cell(new Point(i, j), true, '#', false,o);
+                 System.out.println("intiMap");
                  map[j][i]=uneCell;
             }
         }

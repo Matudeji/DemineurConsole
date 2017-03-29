@@ -6,12 +6,14 @@
 package View;
 
 import Model.Map;
+import java.util.Observable;
+import java.util.Observer;
 
 /**
  *
  * @author arthur
  */
-public class ViewConsole implements View {
+public class ViewConsole implements View, Observer {
     
     Map map;
     
@@ -36,6 +38,11 @@ public class ViewConsole implements View {
             System.out.println("");
         }
         System.out.println("----------------------------------");
+    }
+    
+    @Override
+    public void update(Observable o, Object o1) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
     
 }

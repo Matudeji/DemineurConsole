@@ -6,6 +6,7 @@
 package Model;
 
 import View.View;
+import View.ViewConsole;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Observable;
@@ -15,14 +16,13 @@ import java.util.Observer;
  *
  * @author arthur
  */
-public class Game implements Observer {
+public class Game extends Observable implements Observer {
 
     private Map map;
     private ArrayList<View> views;
 
     public Game() {
         views = new ArrayList();
-
     }
     
     public Map getMap() {
@@ -54,6 +54,9 @@ public class Game implements Observer {
 
     public void initMines(Point firstClic) {
         map.initMines(firstClic);
+        System.out.println("initMines");
+        //setChanged();
+        //notifyObservers();
     }
 
     public void mark(int x, int y, char mon) {
@@ -62,9 +65,12 @@ public class Game implements Observer {
         } else {
             System.out.println("La case est deja dévoilé");
         }
+        //setChanged();
+        //notifyObservers();
     }
 
     public boolean clic(Point clic) {
+        System.out.println("game clic");
         if (map.map[clic.getX()][clic.getY()].getMine()) {
             return false;
         }
@@ -167,6 +173,8 @@ public class Game implements Observer {
             map.map[x][y].setType('.');
             revailNeighborhood(x, y);
         }
+        //setChanged();
+        //notifyObservers();
     }
 
     public final static void clearConsole() {
@@ -187,7 +195,9 @@ public class Game implements Observer {
     public void update(Observable o, Object o1) {
         clearConsole();
         for(int i=0; i< views.size(); i++) {
-            views.get(i).print();
+            if(views.get(i) instanceof ViewConsole) {
+                views.get(i).print();
+            }
         }
         System.out.println("==========================");
 
