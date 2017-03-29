@@ -24,20 +24,20 @@ public class Game extends Observable implements Observer {
     public Game() {
         views = new ArrayList();
     }
-    
+
     public Map getMap() {
         return map;
     }
-    
+
     public View getView(int i) {
         return views.get(i);
     }
-    
+
     public void addView(View view) {
         System.out.println(view);
-        try{
+        try {
             this.views.add(view);
-        }catch(Exception e){
+        } catch (Exception e) {
             System.err.println(e.getMessage());
             e.printStackTrace();
         }
@@ -55,8 +55,8 @@ public class Game extends Observable implements Observer {
     public void initMines(Point firstClic) {
         map.initMines(firstClic);
         System.out.println("initMines");
-        //setChanged();
-        //notifyObservers();
+        setChanged();
+        notifyObservers();
     }
 
     public void mark(int x, int y, char mon) {
@@ -75,6 +75,8 @@ public class Game extends Observable implements Observer {
             return false;
         }
         revail(clic.getX(), clic.getY());
+        setChanged();
+        notifyObservers();
         return true;
     }
 
@@ -141,22 +143,20 @@ public class Game extends Observable implements Observer {
             }
         }
     }
-    
+
     public int Victory() {
-        if(map.getStayingMine()==0){
-            if(map.mapAllViewed()==true){
+        if (map.getStayingMine() == 0) {
+            if (map.mapAllViewed() == true) {
                 return 1;
-            }
-            else{
+            } else {
                 return 0;
             }
-        }
-        else{
+        } else {
             return 0;
         }
     }
-    
-    public boolean testifmine(int x, int y, boolean marque){
+
+    public boolean testifmine(int x, int y, boolean marque) {
         return map.testIfMine(x, y, marque);
     }
 
@@ -173,8 +173,6 @@ public class Game extends Observable implements Observer {
             map.map[x][y].setType('.');
             revailNeighborhood(x, y);
         }
-        //setChanged();
-        //notifyObservers();
     }
 
     public final static void clearConsole() {
@@ -194,8 +192,8 @@ public class Game extends Observable implements Observer {
     @Override
     public void update(Observable o, Object o1) {
         clearConsole();
-        for(int i=0; i< views.size(); i++) {
-            if(views.get(i) instanceof ViewConsole) {
+        for (int i = 0; i < views.size(); i++) {
+            if (views.get(i) instanceof ViewConsole) {
                 views.get(i).print();
             }
         }

@@ -55,7 +55,7 @@ public class Map extends Observable {
     public void initEmptyMap(Game o) {
         for(int i=0; i<height; i++) {
             for(int j=0; j<width; j++) {
-                 Cell uneCell = new Cell(new Point(i, j), true, '#', false,o);
+                 Cell uneCell = new Cell(new Point(j, i), true, '#', false,o);
                  System.out.println("intiMap");
                  map[j][i]=uneCell;
             }

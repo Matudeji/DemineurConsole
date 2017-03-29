@@ -32,38 +32,27 @@ public class GraphicalGridView extends JPanel {
         grid = new GridLayout(map.getHeight(), map.getWidth(), 5, 5);
         this.setLayout(grid);
         this.map = game.getMap();
-        /*grid = new GridLayout(map.getHeight(), map.getWidth(), 5, 5);
-        this.setLayout(grid);
-        this.add(new GraphicalCellView(map.map[0][0], true, game));
-        this.add(new bouton(map.map[0][0], true, game));
-        this.add(new bouton(map.map[0][0], true, game));
-        this.add(new bouton(map.map[0][0], true, game));
-*/
-        //this.add(new JButton(""+map.map[0][0].getType()));
+
         this.print();
     }
 
     public void print() {
         for (int i = 0; i < map.getHeight(); i++) {
             for (int j = 0; j < map.getWidth(); j++) {
-                //GraphicalCellView cellView = new GraphicalCellView(map.map[j][i], true, game);
-                //this.add(cellView);
-                this.add(new bouton(map.map[j][i], true, game));
-                System.out.println("frame add");
+                GraphicalCellView cellView = new GraphicalCellView(map.map[j][i], true, game);
+                this.add(cellView);
             }
         }
         frame.setSize(map.getWidth() * 50, map.getHeight() * 50);
         this.setVisible(true);
-        
-        
-     
     }
 
-    public GraphicalCellView getButton(int i, int j) {
+    public GraphicalCellView getButton(int j, int i) {
         System.out.println(i + " " + j);
+        System.out.println(map.getWidth() * i + j);
         System.out.println("getCompo " + this.grid.getRows() * i + j);
         System.out.println(this.getComponents().length);
-        return (GraphicalCellView) this.getComponent(this.grid.getRows() * i + j);
+        return (GraphicalCellView) this.getComponent(map.getWidth() * i + j);
     }
 
 }

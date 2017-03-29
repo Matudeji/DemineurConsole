@@ -27,12 +27,9 @@ public class Main {
 
         game.createMap(10, 10, 10, game);
         ViewGUI viewG = new ViewGUI(game, game);
-        //game.addObserver(viewG);
-        //game.addView(viewG);
+        game.addObserver(viewG);
+        game.addView(viewG);        
 
-        //JFrame frame = new JFrame("lol");
-        
-
-        //game.initMines(new Point(2, 2));
+        game.initMines(new Point(2, 2));
     }
 }

@@ -16,36 +16,29 @@ import javax.swing.JButton;
  *
  * @author arthur
  */
-public class GraphicalCellView extends JButton implements ActionListener {
-
+public class GraphicalCellView extends JButton implements ActionListener{
     private Cell cell;
     private boolean enabled;
     private Game game;
-
+    
     GraphicalCellView(Cell cell, boolean enabled, Game game) {
-        super("#");
-        /*super(""+cell.getType());
-        System.out.println(""+cell.getType());
+        super(""+cell.getType());
         this.game = game;
         this.cell = cell;
         this.enabled = enabled;
 
         this.addActionListener(this);
-        */
-    }
-    
-    
-    public void updateUI() {
-        //this.setText("");
-        System.out.println("updateUI ");
     }
     
     @Override
     public void actionPerformed(ActionEvent e) {
         System.out.println("bouton: " + cell.getPosition().getX() + " " + cell.getPosition().getY());
+        
+        System.out.println(game.getMap().getWidth() * cell.getPosition().getY() + cell.getPosition().getX());
+        //map.getWidth() * i + j
         Controller.clic(cell.getPosition(), game);
     }
-
+    
     /**
      * @return the enabled
      */
@@ -59,8 +52,12 @@ public class GraphicalCellView extends JButton implements ActionListener {
      */
     @Override
     public void setEnabled(boolean enabled) {
-        //
         this.enabled = enabled;
     }
-
+    
+    public void updateText() {
+        this.setText(""+cell.getType());
+    }
+    
+    
 }

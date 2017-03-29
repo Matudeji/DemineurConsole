@@ -27,15 +27,10 @@ public class ViewGUI extends JFrame implements View, Observer {
 
     public ViewGUI(Game game, Observable gameModel) {
         super("Déminouille");
-        /*this.game = game;
+        this.game = game;
         this.map = game.getMap();
         this.gameModel = gameModel;
-        this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        this.grid = new GraphicalGridView(game, this);
-        this.add(grid);
-        this.print();
-        this.setVisible(true);
-         */
+        
         this.setSize(300, 400);
         this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         this.setVisible(true);
@@ -52,12 +47,12 @@ public class ViewGUI extends JFrame implements View, Observer {
     @Override
     public void update(Observable o, Object o1) {
         // loop through each cell
-
+        System.out.println("loop through each cell");
         if (gameModel == o) {
             System.out.println("update de la vue");
             for (int i = 0; i < this.game.getMap().getHeight(); i++) {
                 for (int j = 0; j < this.game.getMap().getWidth(); j++) {
-                    this.grid.getButton(i, j);
+                    this.grid.getButton(j, i).updateText();
                 }
             }
         }
