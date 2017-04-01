@@ -56,6 +56,9 @@ public class GraphicalCellView extends JButton implements ActionListener{
     }
     
     public void updateText() {
+        if(!cell.getHidden()) {
+            this.enabled = false;
+        }
         this.setText(""+cell.getType());
     }
     

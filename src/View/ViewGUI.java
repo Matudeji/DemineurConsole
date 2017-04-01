@@ -7,6 +7,7 @@ package View;
 
 import Model.Game;
 import Model.Map;
+import java.awt.BorderLayout;
 import java.awt.GridLayout;
 import java.util.Observable;
 import java.util.Observer;
@@ -24,6 +25,8 @@ public class ViewGUI extends JFrame implements View, Observer {
     Map map;
     Observable gameModel;
     GraphicalGridView grid;
+    StatusBar statusBar;
+    
 
     public ViewGUI(Game game, Observable gameModel) {
         super("Déminouille");
@@ -34,8 +37,12 @@ public class ViewGUI extends JFrame implements View, Observer {
         this.setSize(300, 400);
         this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         this.setVisible(true);
+        this.setLayout(new BorderLayout(5, 5));
+        
         this.grid = new GraphicalGridView(game, this);
-        this.add(grid);
+        this.add(grid, BorderLayout.CENTER);
+        this.statusBar = new StatusBar(game.getMap().getStayingMine());
+        this.add(statusBar, BorderLayout.SOUTH);
 
     }
 
@@ -56,5 +63,6 @@ public class ViewGUI extends JFrame implements View, Observer {
                 }
             }
         }
+        this.statusBar.setRemainingMines(game.getMap().getStayingMine());
     }
 }

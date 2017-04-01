@@ -5,15 +5,9 @@
  */
 package demineurgraphique;
 
-import Controller.Controller;
 import Model.Game;
 import Model.Point;
 import View.ViewGUI;
-import java.awt.GridLayout;
-import java.util.Scanner;
-import javax.swing.JButton;
-import javax.swing.JFrame;
-import javax.swing.JPanel;
 
 /**
  *

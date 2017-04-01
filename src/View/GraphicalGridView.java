@@ -43,7 +43,7 @@ public class GraphicalGridView extends JPanel {
                 this.add(cellView);
             }
         }
-        frame.setSize(map.getWidth() * 50, map.getHeight() * 50);
+        frame.setSize(map.getWidth() * 50, map.getHeight() * 50 + 50);
         this.setVisible(true);
     }
 
