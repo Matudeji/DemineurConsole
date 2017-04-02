@@ -32,9 +32,6 @@ public class GraphicalCellView extends JButton implements ActionListener{
     
     @Override
     public void actionPerformed(ActionEvent e) {
-        System.out.println("bouton: " + cell.getPosition().getX() + " " + cell.getPosition().getY());
-        
-        System.out.println(game.getMap().getWidth() * cell.getPosition().getY() + cell.getPosition().getX());
         //map.getWidth() * i + j
         Controller.clic(cell.getPosition(), game);
     }

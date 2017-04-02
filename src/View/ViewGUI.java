@@ -13,6 +13,7 @@ import java.util.Observable;
 import java.util.Observer;
 import javax.swing.JButton;
 import javax.swing.JFrame;
+import javax.swing.JMenuBar;
 import javax.swing.JPanel;
 
 /**
@@ -26,6 +27,8 @@ public class ViewGUI extends JFrame implements View, Observer {
     Observable gameModel;
     GraphicalGridView grid;
     StatusBar statusBar;
+    MenuBar menuBar;
+    SubMenu subMenu;
     
 
     public ViewGUI(Game game, Observable gameModel) {
@@ -41,8 +44,15 @@ public class ViewGUI extends JFrame implements View, Observer {
         
         this.grid = new GraphicalGridView(game, this);
         this.add(grid, BorderLayout.CENTER);
+        
         this.statusBar = new StatusBar(game.getMap().getStayingMine());
         this.add(statusBar, BorderLayout.SOUTH);
+        
+        this.menuBar = new MenuBar();
+        this.setJMenuBar(menuBar);
+        
+        //this.subMenu = new SubMenu();
+        //this.add(subMenu, BorderLayout.NORTH);
 
     }
 
@@ -54,9 +64,7 @@ public class ViewGUI extends JFrame implements View, Observer {
     @Override
     public void update(Observable o, Object o1) {
         // loop through each cell
-        System.out.println("loop through each cell");
         if (gameModel == o) {
-            System.out.println("update de la vue");
             for (int i = 0; i < this.game.getMap().getHeight(); i++) {
                 for (int j = 0; j < this.game.getMap().getWidth(); j++) {
                     this.grid.getButton(j, i).updateText();

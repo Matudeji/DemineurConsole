@@ -43,15 +43,11 @@ public class GraphicalGridView extends JPanel {
                 this.add(cellView);
             }
         }
-        frame.setSize(map.getWidth() * 50, map.getHeight() * 50 + 50);
+        frame.setSize(map.getWidth() * 50, map.getHeight() * 50 + 100);
         this.setVisible(true);
     }
 
     public GraphicalCellView getButton(int j, int i) {
-        System.out.println(i + " " + j);
-        System.out.println(map.getWidth() * i + j);
-        System.out.println("getCompo " + this.grid.getRows() * i + j);
-        System.out.println(this.getComponents().length);
         return (GraphicalCellView) this.getComponent(map.getWidth() * i + j);
     }
 

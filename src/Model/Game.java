@@ -197,8 +197,6 @@ public class Game extends Observable implements Observer {
                 views.get(i).print();
             }
         }
-        System.out.println("==========================");
-
     }
 
 }
