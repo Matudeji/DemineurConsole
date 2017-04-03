@@ -6,10 +6,7 @@
 package View;
 
 import java.awt.GridLayout;
-import javax.swing.JLabel;
 import javax.swing.JPanel;
-import javax.swing.JSlider;
-import javax.swing.JTextField;
 
 /**
  *
@@ -17,58 +14,52 @@ import javax.swing.JTextField;
  */
 public class CustomGamePanel extends JPanel {
 
-    private int rows = 9;
-    private int columns = 19;
-    private int mines = 76;
+    Parameter rows, columns, mines;
 
-    public JPanel rowsPanel = new JPanel();
-    public JLabel rowsLabel = new JLabel("rows");
-    public JSlider rowsSlide = new JSlider(9, 24, rows);
-    public JTextField rowsText = new JTextField(String.valueOf(rows), 2);
+    private int rowsDefault = 9;
+    private int columnsDefault = 19;
+    private int minesDefault = 76;
 
-    public JPanel columnsPanel = new JPanel();
-    public JLabel columnsLabel = new JLabel("columns");
-    public JSlider columnsSlide = new JSlider(9, 30, columns);
-    public JTextField columnsText = new JTextField(String.valueOf(columns), 2);
 
-    public JPanel minesPanel = new JPanel();
-    public JLabel minesLabel = new JLabel("mines");
-    public JSlider minesSlide = new JSlider(10, (int) (0.85 * rows * columns), mines);
-    public JTextField minesText = new JTextField(String.valueOf(mines), 2);
 
     public CustomGamePanel() {
         this.setLayout(new GridLayout(3, 3));
 
-        rowsSlide.setPaintTicks(true);
-        rowsSlide.setPaintLabels(true);
-        rowsSlide.setMinorTickSpacing(1);
-        rowsSlide.setMajorTickSpacing(2);
+        rows = new Parameter("rows", 9, 24, rowsDefault);
+        columns = new Parameter("columns", 9, 30, columnsDefault);
+        mines = new Parameter("rows", 10, (int) (0.85 * rowsDefault * columnsDefault), minesDefault);
 
-        columnsSlide.setPaintTicks(true);
-        columnsSlide.setPaintLabels(true);
-        columnsSlide.setMinorTickSpacing(2);
-        columnsSlide.setMajorTickSpacing(4);
 
-        minesSlide.setPaintTicks(true);
-        minesSlide.setPaintLabels(true);
-        minesSlide.setMinorTickSpacing(13);
-        minesSlide.setMajorTickSpacing(26);
+        rows.slider.setPaintTicks(true);
+        rows.slider.setPaintLabels(true);
+        rows.slider.setMinorTickSpacing(1);
+        rows.slider.setMajorTickSpacing(2);
 
-        rowsPanel.add(rowsLabel);
-        rowsPanel.add(rowsSlide);
-        rowsPanel.add(rowsText);
+        columns.slider.setPaintTicks(true);
+        columns.slider.setPaintLabels(true);
+        columns.slider.setMinorTickSpacing(2);
+        columns.slider.setMajorTickSpacing(4);
 
-        columnsPanel.add(columnsLabel);
-        columnsPanel.add(columnsSlide);
-        columnsPanel.add(columnsText);
+        mines.slider.setPaintTicks(true);
+        mines.slider.setPaintLabels(true);
+        mines.slider.setMinorTickSpacing(13);
+        mines.slider.setMajorTickSpacing(26);
 
-        minesPanel.add(minesLabel);
-        minesPanel.add(minesSlide);
-        minesPanel.add(minesText);
+        rows.panel.add(rows.label);
+        rows.panel.add(rows.slider);
+        rows.panel.add(rows.text);
 
-        this.add(rowsPanel);
-        this.add(columnsPanel);
-        this.add(minesPanel);
+        columns.panel.add(columns.label);
+        columns.panel.add(columns.slider);
+        columns.panel.add(columns.text);
+
+        mines.panel.add(mines.label);
+        mines.panel.add(mines.slider);
+        mines.panel.add(mines.text);
+
+        this.add(rows.panel);
+        this.add(columns.panel);
+        this.add(mines.panel);
     }
 
 }
