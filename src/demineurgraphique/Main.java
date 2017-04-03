@@ -26,8 +26,5 @@ public class Main {
         game.addView(viewG);        
 
         game.initMines(new Point(2, 2));
-        
-        
-        CustomGameFrame custom = new CustomGameFrame();
     }
 }

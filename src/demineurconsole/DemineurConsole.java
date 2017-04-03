@@ -8,9 +8,7 @@ package demineurconsole;
 import Model.*;
 import Controller.*;
 import View.*;
-import java.io.IOException;
 import java.util.Scanner;
-import java.lang.RuntimeException;
 /**
  *
  * @author alan
