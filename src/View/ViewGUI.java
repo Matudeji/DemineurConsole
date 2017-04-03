@@ -50,9 +50,6 @@ public class ViewGUI extends JFrame implements View, Observer {
         
         this.menuBar = new MenuBar();
         this.setJMenuBar(menuBar);
-        
-        //this.subMenu = new SubMenu();
-        //this.setJMenuBar(menuBar);
 
     }
 

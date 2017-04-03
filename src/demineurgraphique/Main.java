@@ -7,6 +7,7 @@ package demineurgraphique;
 
 import Model.Game;
 import Model.Point;
+import View.CustomGameFrame;
 import View.ViewGUI;
 
 /**
@@ -25,5 +26,8 @@ public class Main {
         game.addView(viewG);        
 
         game.initMines(new Point(2, 2));
+        
+        
+        CustomGameFrame custom = new CustomGameFrame();
     }
 }
