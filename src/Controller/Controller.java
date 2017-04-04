@@ -5,9 +5,7 @@
  */
 package Controller;
 
-import java.util.Scanner;
 import Model.*;
-import java.io.IOException;
 
 /**
  *
