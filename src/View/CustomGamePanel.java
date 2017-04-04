@@ -27,7 +27,7 @@ public class CustomGamePanel extends JPanel {
 
         rows = new Parameter("rows", 9, 24, rowsDefault);
         columns = new Parameter("columns", 9, 30, columnsDefault);
-        mines = new Parameter("rows", 10, (int) (0.85 * rowsDefault * columnsDefault), minesDefault);
+        mines = new Parameter("mines", 10, (int) (0.85 * rowsDefault * columnsDefault), minesDefault);
 
 
         rows.slider.setPaintTicks(true);

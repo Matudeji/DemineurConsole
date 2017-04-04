@@ -81,5 +81,9 @@ public class Controller {
             return -1;
         }
     }
+    
+    public static void rightClic(Point pt, Game o) {
+        o.mark(pt.getX(), pt.getY(), '!');
+    }
 
 }

@@ -11,6 +11,7 @@ import Model.Game;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import javax.swing.JButton;
+import javax.swing.SwingUtilities;
 
 /**
  *
@@ -28,6 +29,8 @@ public class GraphicalCellView extends JButton implements ActionListener{
         this.enabled = enabled;
 
         this.addActionListener(this);
+        this.addMouseListener(new ClickManager(cell.getPosition(), game));
+
     }
     
     @Override
