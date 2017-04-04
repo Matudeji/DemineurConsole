@@ -25,6 +25,5 @@ public class Main {
         game.addObserver(viewG);
         game.addView(viewG);        
 
-        game.initMines(new Point(2, 2));
     }
 }

@@ -75,11 +75,23 @@ public class Controller {
 
     public static int clic(Point pt, Game o) {
         System.out.println("controller");
-        if (o.clic(pt)) {
-            return o.Victory();
-        } else {
-            return -1;
+        if(o.isInitialize()==false){
+            o.initMines(pt);
+            o.clic(pt);
+            o.setInitialize(true);
+            return 0;
+        }
+        else{
+            if (o.clic(pt)) {
+                return o.Victory();
+            } else {
+                return o.defeat();
+            }
         }
     }
-
+    
+    public static int rebuiltMap(int width, int height, int nbmines, Game o){
+        o.createMap(width,height,nbmines,o);
+        return 0;
+    }
 }

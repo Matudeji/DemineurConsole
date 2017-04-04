@@ -63,7 +63,7 @@ public class ViewGUI extends JFrame implements View, Observer {
     @Override
     public void print() {
         this.grid.print();
-    }
+    } 
 
     @Override
     public void update(Observable o, Object o1) {

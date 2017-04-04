@@ -19,10 +19,20 @@ import java.util.Observer;
 public class Game extends Observable implements Observer {
 
     private Map map;
+    private boolean initialize;
     private ArrayList<View> views;
 
     public Game() {
         views = new ArrayList();
+        initialize=false;
+    }
+    
+     public boolean isInitialize() {
+        return initialize;
+    }
+
+    public void setInitialize(boolean initialize) {
+        this.initialize = initialize;
     }
 
     public Map getMap() {
@@ -156,6 +166,14 @@ public class Game extends Observable implements Observer {
         }
     }
 
+    public boolean notStart(){
+        if(map.getMineProportion()==map.getStayingMine()){
+            return true;
+        }
+        else{
+            return false;
+        }
+    }
     public boolean testifmine(int x, int y, boolean marque) {
         return map.testIfMine(x, y, marque);
     }
@@ -187,6 +205,12 @@ public class Game extends Observable implements Observer {
         } catch (final IOException e) {
             //  Handle any exceptions.
         }
+    }
+    public int defeat(){
+        createMap(15,map.getHeight(),map.getMineProportion()/(map.getHeight()*map.getWidth()),this);
+        setChanged();
+        notifyObservers();
+        return -1;
     }
 
     @Override
