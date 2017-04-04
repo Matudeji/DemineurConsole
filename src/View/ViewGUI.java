@@ -74,7 +74,7 @@ public class ViewGUI extends JFrame implements View, Observer {
                     this.grid.getButton(j, i).updateText();
                 }
             }
+            this.statusBar.setRemainingMines(game.getMap().getStayingMine());
         }
-        this.statusBar.setRemainingMines(game.getMap().getStayingMine());
     }
 }

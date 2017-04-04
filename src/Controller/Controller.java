@@ -94,4 +94,10 @@ public class Controller {
         o.createMap(width,height,nbmines,o);
         return 0;
     }
+
+    public static void rightClic(Point pt, Game o) {
+        o.mark(pt.getX(), pt.getY());
+    }
+
+
 }
