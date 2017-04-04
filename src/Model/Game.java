@@ -68,8 +68,10 @@ public class Game extends Observable implements Observer {
     public void mark(int x, int y) {
         if(map.map[x][y].getType() == unmark) {
            map.map[x][y].setType(mine) ;
+           map.setStayingMine(map.getStayingMine() - 1);
         }else if(map.map[x][y].getType() == mine) {
             map.map[x][y].setType(undecide) ;
+            map.setStayingMine(map.getStayingMine() + 1);
         }else if(map.map[x][y].getType() == undecide) {
            map.map[x][y].setType(unmark) ;
         }
