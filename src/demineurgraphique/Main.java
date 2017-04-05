@@ -24,6 +24,5 @@ public class Main {
         ViewGUI viewG = new ViewGUI(game, game);
         game.addObserver(viewG);
         game.addView(viewG);        
-
     }
 }

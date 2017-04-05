@@ -31,12 +31,11 @@ public class GraphicalGridView extends JPanel {
         this.frame = mainFrame;
         grid = new GridLayout(map.getHeight(), map.getWidth(), 5, 5);
         this.setLayout(grid);
-        this.map = game.getMap();
-
         this.print();
     }
 
     public void print() {
+        this.removeAll();
         for (int i = 0; i < map.getHeight(); i++) {
             for (int j = 0; j < map.getWidth(); j++) {
                 GraphicalCellView cellView = new GraphicalCellView(map.map[j][i], true, game);

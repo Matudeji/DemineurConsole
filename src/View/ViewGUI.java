@@ -69,11 +69,31 @@ public class ViewGUI extends JFrame implements View, Observer {
     public void update(Observable o, Object o1) {
         // loop through each cell
         if (gameModel == o) {
+            try{
+                String s = (String)o1;
+                if(s.equals("restart")){
+                    this.remove(this.grid);
+                    this.grid = new GraphicalGridView(game, this);
+                    this.add(grid, BorderLayout.CENTER);
+                    /*for (int i = 0; i < this.game.getMap().getHeight(); i++) {
+                        for (int j = 0; j < this.game.getMap().getWidth(); j++) {
+                            this.grid.getButton(j, i).updateText();
+                        }
+                    }*/
+                    this.grid.print();
+                }
+            }
+            catch(NullPointerException e) {
+            System.out.println("je suis dans l'erreur");}
+        }
+        if (gameModel == o) {
+            this.map = game.getMap();
             for (int i = 0; i < this.game.getMap().getHeight(); i++) {
                 for (int j = 0; j < this.game.getMap().getWidth(); j++) {
                     this.grid.getButton(j, i).updateText();
                 }
             }
+            this.grid.print();
             this.statusBar.setRemainingMines(game.getMap().getStayingMine());
         }
     }

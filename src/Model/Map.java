@@ -49,6 +49,11 @@ public class Map extends Observable {
         }
         map = new Cell[width][height];
         initEmptyMap(o);
+        for(int i=0; i<height; i++) {
+            for(int j=0; j<width; j++) {
+                 System.out.println(map[j][i].getType());
+            }
+        }
     }
     
     

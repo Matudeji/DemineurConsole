@@ -61,6 +61,8 @@ public class Game extends Observable implements Observer {
 
     public void createMap(int width, int height, int mineProportion, Game gg) {
         map = new Map(width, height, mineProportion, gg);
+        setChanged();
+        notifyObservers("restart");
 
     }
 
@@ -227,9 +229,8 @@ public class Game extends Observable implements Observer {
         }
     }
     public int defeat(){
-        createMap(15,map.getHeight(),map.getMineProportion()/(map.getHeight()*map.getWidth()),this);
-        setChanged();
-        notifyObservers();
+        this.initialize=false;
+        createMap(map.getWidth(),map.getHeight(),(map.getMineProportion()*100)/(map.getHeight()*map.getWidth()),this);
         return -1;
     }
 
