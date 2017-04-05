@@ -81,7 +81,7 @@ public class Controller {
         }
         else{
             if (o.clic(pt)) {
-                return o.Victory();
+                return o.VictoryFrame();
             } else {
                 return o.defeat();
             }

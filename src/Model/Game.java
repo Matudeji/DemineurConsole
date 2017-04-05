@@ -187,6 +187,20 @@ public class Game extends Observable implements Observer {
             return 0;
         }
     }
+    
+    public int VictoryFrame(){
+        if (map.getStayingMine() == 0) {
+            if (map.mapAllViewed() == true) {
+                setChanged();
+                notifyObservers("victory");
+                return 1;
+            } else {
+                return 0;
+            }
+        } else {
+            return 0;
+        }
+    }
 
     public boolean notStart(){
         if(map.getMineProportion()==map.getStayingMine()){
@@ -231,6 +245,8 @@ public class Game extends Observable implements Observer {
     public int defeat(){
         this.initialize=false;
         createMap(map.getWidth(),map.getHeight(),(map.getMineProportion()*100)/(map.getHeight()*map.getWidth()),this);
+        setChanged();
+        notifyObservers("defeat");
         return -1;
     }
 

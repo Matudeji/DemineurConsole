@@ -5,6 +5,8 @@
  */
 package View;
 
+
+import static Controller.Controller.rebuildMap;
 import Model.Game;
 import Model.Map;
 import java.awt.BorderLayout;
@@ -72,6 +74,12 @@ public class ViewGUI extends JFrame implements View, Observer {
             try{
                 String s = (String)o1;
                 if(s.equals("restart")){
+                        this.remove(this.grid);
+                        this.grid = new GraphicalGridView(game, this);
+                        this.add(grid, BorderLayout.CENTER);
+                        this.grid.print();
+                }
+                if(s.equals("defeat")){
                     String[] info = {"Recommencer", "Quitter"};
                     JOptionPane jop = new JOptionPane(), jop2 = new JOptionPane();
                     int rang = jop.showOptionDialog(null, 
@@ -83,14 +91,31 @@ public class ViewGUI extends JFrame implements View, Observer {
                       info,
                       info[1]);
                     if(rang==0){
-                        jop2.showMessageDialog(null, "Votre voulez " + info[rang],"!", JOptionPane.INFORMATION_MESSAGE);
-                        this.remove(this.grid);
-                        this.grid = new GraphicalGridView(game, this);
-                        this.add(grid, BorderLayout.CENTER);
-                        this.grid.print();
+                        jop2.showMessageDialog(null, "Vous voulez " + info[rang],"yeaaaah", JOptionPane.INFORMATION_MESSAGE);
+                        rebuildMap(this.map.getWidth(),this.map.getHeight(),(this.map.getMineProportion()*100)/(this.map.getWidth()*this.map.getHeight()),this.game);
                     }
                     else{
-                        jop2.showMessageDialog(null, "Votre voulez " + info[rang],"!", JOptionPane.INFORMATION_MESSAGE);
+                        jop2.showMessageDialog(null, "Vous voulez " + info[rang],"Au revoir", JOptionPane.INFORMATION_MESSAGE);
+                        this.dispose();
+                    }
+                }
+                if(s.equals("victory")){
+                    String[] info = {"Recommencer", "Quitter"};
+                    JOptionPane jop = new JOptionPane(), jop2 = new JOptionPane();
+                    int rang = jop.showOptionDialog(null, 
+                      "Vous venez de gagner. Bravoo !",
+                      "Gendarmerie nationale !",
+                      JOptionPane.YES_NO_CANCEL_OPTION,
+                      JOptionPane.QUESTION_MESSAGE,
+                      null,
+                      info,
+                      info[1]);
+                    if(rang==0){
+                        jop2.showMessageDialog(null, "Vous voulez " + info[rang],"yeaaaah", JOptionPane.INFORMATION_MESSAGE);
+                        rebuildMap(this.map.getWidth(),this.map.getHeight(),(this.map.getMineProportion()*100)/(this.map.getWidth()*this.map.getHeight()),this.game);
+                    }
+                    else{
+                        jop2.showMessageDialog(null, "Vous voulez " + info[rang],"Au revoir", JOptionPane.INFORMATION_MESSAGE);
                         this.dispose();
                     }
                 }
