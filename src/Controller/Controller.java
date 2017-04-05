@@ -88,14 +88,18 @@ public class Controller {
         }
     }
     
-    public static int rebuiltMap(int width, int height, int nbmines, Game o){
+    public static int rebuildMap(int width, int height, int nbmines, Game o){
         o.createMap(width,height,nbmines,o);
+        System.out.println(nbmines);
         return 0;
     }
 
     public static void rightClic(Point pt, Game o) {
         o.mark(pt.getX(), pt.getY());
     }
+    
+    
+    
 
 
 }
