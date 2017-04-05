@@ -90,6 +90,7 @@ public class Controller {
     
     public static int rebuildMap(int width, int height, int nbmines, Game o){
         o.createMap(width,height,nbmines,o);
+        o.setInitialize(false);
         System.out.println(nbmines);
         return 0;
     }
