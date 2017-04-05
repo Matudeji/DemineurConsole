@@ -72,15 +72,27 @@ public class ViewGUI extends JFrame implements View, Observer {
             try{
                 String s = (String)o1;
                 if(s.equals("restart")){
-                    this.remove(this.grid);
-                    this.grid = new GraphicalGridView(game, this);
-                    this.add(grid, BorderLayout.CENTER);
-                    /*for (int i = 0; i < this.game.getMap().getHeight(); i++) {
-                        for (int j = 0; j < this.game.getMap().getWidth(); j++) {
-                            this.grid.getButton(j, i).updateText();
-                        }
-                    }*/
-                    this.grid.print();
+                    String[] info = {"Recommencer", "Quitter"};
+                    JOptionPane jop = new JOptionPane(), jop2 = new JOptionPane();
+                    int rang = jop.showOptionDialog(null, 
+                      "Vous venez de perdre !",
+                      "Gendarmerie nationale !",
+                      JOptionPane.YES_NO_CANCEL_OPTION,
+                      JOptionPane.QUESTION_MESSAGE,
+                      null,
+                      info,
+                      info[1]);
+                    if(rang==0){
+                        jop2.showMessageDialog(null, "Votre voulez " + info[rang],"!", JOptionPane.INFORMATION_MESSAGE);
+                        this.remove(this.grid);
+                        this.grid = new GraphicalGridView(game, this);
+                        this.add(grid, BorderLayout.CENTER);
+                        this.grid.print();
+                    }
+                    else{
+                        jop2.showMessageDialog(null, "Votre voulez " + info[rang],"!", JOptionPane.INFORMATION_MESSAGE);
+                        this.dispose();
+                    }
                 }
             }
             catch(NullPointerException e) {
