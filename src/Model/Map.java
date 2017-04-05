@@ -23,8 +23,6 @@ public class Map extends Observable {
     public Cell[][] map;
 
     public Map(int width, int height, int mineProportion, Game o) throws RuntimeException {
-        System.out.println(width);
-        System.out.println(height);
         if(width <= 0 || height <= 0) {
             throw new RuntimeException("Les dimensions doivent être positives");
         }
@@ -32,18 +30,15 @@ public class Map extends Observable {
         this.height = height;
         if(mineProportion<0 || mineProportion>100){
             this.mineProportion = (width*height)/2;
-            System.out.println(this.mineProportion);
             this.stayingMine=this.mineProportion;
         }
         else{
             if(mineProportion>= 85){
                 this.mineProportion = (int) ((width*height)* (85.0/100.0));
-                System.out.println(this.mineProportion);
                 this.stayingMine=this.mineProportion;
             }
             else{
                 this.mineProportion = (int) ( ( (float) width* (float) height)* ( (float) mineProportion/100.0) );
-                System.out.println(this.mineProportion);
                 this.stayingMine=this.mineProportion;
             }
         }
@@ -61,7 +56,6 @@ public class Map extends Observable {
         for(int i=0; i<height; i++) {
             for(int j=0; j<width; j++) {
                  Cell uneCell = new Cell(new Point(j, i), true, '#', false,o);
-                 System.out.println("intiMap");
                  map[j][i]=uneCell;
             }
         }
@@ -172,7 +166,6 @@ public class Map extends Observable {
                 
                 if(!map[j][i].getMine() && numberOfMine != 0) {
                     String convertedNumberOfMine = Integer.toString(numberOfMine);
-                    //map[j][i].setType(convertedNumberOfMine.charAt(0));
                 }
             }
         }

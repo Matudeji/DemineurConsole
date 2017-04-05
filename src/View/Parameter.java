@@ -9,12 +9,14 @@ import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JSlider;
 import javax.swing.JTextField;
+import javax.swing.event.ChangeEvent;
+import javax.swing.event.ChangeListener;
 
 /**
  *
  * @author arthur
  */
-public class Parameter {
+public class Parameter implements ChangeListener {
 
     public JPanel panel;
     public JLabel label;
@@ -26,6 +28,14 @@ public class Parameter {
         this.label = new JLabel(label);
         slider = new JSlider(sliderMin, sliderMax, sliderDefault);
         text = new JTextField(String.valueOf(sliderDefault), 2);
+        slider.addChangeListener(this);
+    }
+
+    @Override
+    public void stateChanged(ChangeEvent e) {
+        JSlider source = (JSlider) e.getSource();
+        //System.out.println(source.getValueIsAdjusting());
+        System.out.println(source.getValue());
     }
 
 }

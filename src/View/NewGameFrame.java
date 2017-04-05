@@ -5,6 +5,7 @@
  */
 package View;
 
+import Model.Game;
 import javax.swing.JFrame;
 
 /**
@@ -14,8 +15,8 @@ import javax.swing.JFrame;
 public class NewGameFrame extends JFrame {
     NewGamePanel newGamePanel;
     
-    NewGameFrame() {
-        this.newGamePanel = new NewGamePanel();
+    NewGameFrame(Game game) {
+        this.newGamePanel = new NewGamePanel(game);
         this.add(newGamePanel);
     }
 

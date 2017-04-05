@@ -53,7 +53,7 @@ public class ViewGUI extends JFrame implements View, Observer {
         this.menuBar = new MenuBar();
         this.setJMenuBar(menuBar);
         
-        this.newGamePanel = new NewGamePanel();
+        this.newGamePanel = new NewGamePanel(game);
         this.add(newGamePanel, BorderLayout.EAST);
         
         this.setSize(map.getWidth() * 50 + 400, map.getHeight() * 50 + 100);
