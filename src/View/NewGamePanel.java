@@ -10,8 +10,6 @@ import java.awt.GridLayout;
 import javax.swing.ButtonGroup;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
-import javax.swing.JRadioButton;
-
 /**
  *
  * @author arthur
@@ -23,14 +21,6 @@ public class NewGamePanel extends JPanel {
     
     private final JLabel select;
     private final ButtonGroup group;
-   
-    /*
-    private final JRadioButton beginner;
-    private final JRadioButton intermediate;
-    private final JRadioButton expert;
-    private final JRadioButton custom;
-    */
-    
     
     private final GameMode beginner;
     private final GameMode intermediate;
@@ -43,12 +33,6 @@ public class NewGamePanel extends JPanel {
         creationGamePanel = new JPanel();
         select = new JLabel("Select Level : ");
         group = new ButtonGroup();
-        /*
-        beginner = new JRadioButton("Beginner : 10 mines in a 9x9 field");
-        intermediate = new JRadioButton("Intermediate : 40 mines in a 16x16 field");
-        expert = new JRadioButton("Expert : 99 mines in a 16x30 field");
-        custom = new JRadioButton("Custom : ");
-        */
         
         beginner = new GameMode("Beginner : 10 mines in a 9x9 field", "beginner", game);
         intermediate = new GameMode("Intermediate : 40 mines in a 16x16 field", "intermediate", game);
